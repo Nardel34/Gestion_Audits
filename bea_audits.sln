@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bea_audits", "bea_audits\bea_audits.csproj", "{A4A0D602-37D5-4352-B0AE-C928C434A84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIB_BASE", "LIB_BASE\LIB_BASE.csproj", "{CDB543BC-D1AA-40B6-9631-1E27FBF5B12C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APP_CONSOLE", "APP_CONSOLE\APP_CONSOLE.csproj", "{54A083BA-6C52-4E78-9294-CC16321EB67F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4A0D602-37D5-4352-B0AE-C928C434A84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A0D602-37D5-4352-B0AE-C928C434A84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A0D602-37D5-4352-B0AE-C928C434A84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A0D602-37D5-4352-B0AE-C928C434A84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB543BC-D1AA-40B6-9631-1E27FBF5B12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB543BC-D1AA-40B6-9631-1E27FBF5B12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB543BC-D1AA-40B6-9631-1E27FBF5B12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB543BC-D1AA-40B6-9631-1E27FBF5B12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A083BA-6C52-4E78-9294-CC16321EB67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A083BA-6C52-4E78-9294-CC16321EB67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A083BA-6C52-4E78-9294-CC16321EB67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A083BA-6C52-4E78-9294-CC16321EB67F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D57D3D9-1DCB-4131-BBAC-CA8863597C64}
+	EndGlobalSection
+EndGlobal
