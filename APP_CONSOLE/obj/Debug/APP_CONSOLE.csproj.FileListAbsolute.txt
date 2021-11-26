@@ -26,4 +26,3 @@ C:\Users\victo\source\repos\bea_audits\APP_CONSOLE\obj\Debug\APP_CONSOLE.csproj.
 C:\Users\victo\source\repos\bea_audits\APP_CONSOLE\obj\Debug\APP_CONSOLE.csproj.CoreCompileInputs.cache
 C:\Users\victo\source\repos\bea_audits\APP_CONSOLE\obj\Debug\APP_CONSOLE.exe
 C:\Users\victo\source\repos\bea_audits\APP_CONSOLE\obj\Debug\APP_CONSOLE.pdb
-C:\Users\victo\source\repos\bea_audits\APP_CONSOLE\obj\Debug\APP_CONSOLE.csproj.CopyComplete

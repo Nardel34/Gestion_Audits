@@ -71,8 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C_ENTREPRISE.cs" />
     <Compile Include="C_AUDIT.cs" />
     <Compile Include="C_BASE.cs" />
+    <Compile Include="C_CRYPT.cs" />
     <Compile Include="C_METRIQUE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

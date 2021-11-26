@@ -14,27 +14,45 @@ namespace APP_CONSOLE
         {
             C_BASE la_base = new C_BASE();
 
-            C_AUDIT un_audit = new C_AUDIT()
-            {
-                id_audit = 1,
-                nom_entreprise = "test",
-                adresse_entreprise = "residence test",
-                date_audit = DateTime.Now
-            };
-            C_METRIQUE une_metrique = new C_METRIQUE()
-            {
-                id_metrique = 1,
-                nom_faille = "chocapic",
-                criticite = 40,
-                description = "tatoucassé",
-                id_audit = 1
-            };
+            //for (int i = 0; i < 15; i++)
+            //{
+            //    C_ENTREPRISE une_entreprise = new C_ENTREPRISE()
+            //    {
+            //        id_entreprise = i,
+            //        nom_entreprise = $"Entreprise_{i}",
+            //        adresse_entreprise = $"Résidence Entreprise_{i}"
+            //    };
+            //    C_AUDIT un_audit = new C_AUDIT()
+            //    {
+            //        id_audit = i,
+            //        nom_audit = $"Audit_{i}",
+            //        date_audit = DateTime.Now,
+            //        id_entreprise = i
+            //    };
+            //    C_METRIQUE une_metrique = new C_METRIQUE()
+            //    {
+            //        id_metrique = i,
+            //        nom_faille = $"Méga faille_{i}",
+            //        criticite = 40,
+            //        description = $"Elle a tout cassé_{i}",
+            //        id_audit = i
+            //    };
+            //    la_base.Ajouter_entreprise(une_entreprise);
+            //    la_base.Ajouter_audit(un_audit);
+            //    la_base.Ajouter_metrique(une_metrique);
+            //}
+            //la_base.Encryptage();
 
-            la_base.ajouter_audit(un_audit);
-            la_base.ajouter_metrique(une_metrique);
+            List<C_ENTREPRISE> test = la_base.get_all_entreprises();
 
-            la_base.Encryptage();
-            
+            foreach (var item in test)
+            {
+                Console.WriteLine(item.nom_entreprise);
+            }
+
+            //la_base.suppression_json_entreprise();
+            //la_base.suppression_json_audit();
+            //la_base.suppression_json_metrique();
         }
     }
 }
