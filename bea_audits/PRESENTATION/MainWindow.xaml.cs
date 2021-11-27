@@ -41,7 +41,7 @@ namespace bea_audits.PRESENTATION
 
         private void entreprise_selectionnee(object sender, SelectionChangedEventArgs e)
         {
-            int id_entreprise = (e.AddedItems[0] as C_ENTREPRISE).id_entreprise;
+            string id_entreprise = (e.AddedItems[0] as C_ENTREPRISE).id_entreprise;
             ListBox_audits.Items.Clear();
             la_coordination.get_audit_by_idEntreprise(id_entreprise);
 
@@ -52,7 +52,7 @@ namespace bea_audits.PRESENTATION
         }
         private void audit_selectionnee(object sender, SelectionChangedEventArgs e)
         {
-            int id_audit = (e.AddedItems[0] as C_AUDIT).id_audit;
+            string id_audit = (e.AddedItems[0] as C_AUDIT).id_audit;
             ListBox_metriques.Items.Clear();
             la_coordination.get_metrique_by_idAudit(id_audit);
 
@@ -64,7 +64,20 @@ namespace bea_audits.PRESENTATION
 
         private void BTN_ajouter_entreprise_Click(object sender, RoutedEventArgs e)
         {
-            C_CADRE_ajout_entreprise le_cadre = new C_CADRE_ajout_entreprise();
+
+            C_CADRE le_cadre = new C_CADRE("entreprise");
+            le_cadre.Show();
+        }
+
+        private void BTN_ajouter_audit_Click(object sender, RoutedEventArgs e)
+        {
+            C_CADRE le_cadre = new C_CADRE("audit");
+            le_cadre.Show();
+        }
+
+        private void BTN_ajouter_metrique_Click(object sender, RoutedEventArgs e)
+        {
+            C_CADRE le_cadre = new C_CADRE("metrique");
             le_cadre.Show();
         }
     }

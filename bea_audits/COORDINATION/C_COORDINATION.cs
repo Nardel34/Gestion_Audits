@@ -68,11 +68,11 @@ namespace bea_audits.COORDINATION
             }
         }
         // ------------------------------------ Récupération de collections par Id --------------------------------------
-        public void get_audit_by_idEntreprise(int P_idEntreprise)
+        public void get_audit_by_idEntreprise(string P_idEntreprise)
         {
             liste_audits = la_base.get_audit_by_idEntreprise(P_idEntreprise);
         }
-        public void get_metrique_by_idAudit(int P_idAudit)
+        public void get_metrique_by_idAudit(string P_idAudit)
         {
             liste_metriques = la_base.get_metrique_by_idAudit(P_idAudit);
         }
@@ -85,7 +85,8 @@ namespace bea_audits.COORDINATION
         }
 
 
-        // ------------------------------------ Fonctions d'ajout aux collections --------------------------------------
+        // ------------------------------------ Fonctions de CRUD aux collections --------------------------------------
+        // --------- Ajouter un objet de la collection -------------
         public void ajoute_entreprise(string P_nomEntreprise, string P_adresseEntreprise)
         {
             if (P_nomEntreprise != "")
@@ -97,7 +98,7 @@ namespace bea_audits.COORDINATION
                 sauvegarder();
             }
         }
-        public void ajoute_audit_by_idEntreprise(string P_nomAudit, int P_idEntreprise)
+        public void ajoute_audit_by_idEntreprise(string P_nomAudit, string P_idEntreprise)
         {
             if (P_nomAudit != "")
             {
@@ -108,7 +109,7 @@ namespace bea_audits.COORDINATION
                 sauvegarder();
             }
         }
-        public void ajoute_metrique_by_idAudit(string P_nomFaille, int P_criticite, string P_description, int P_idAudit)
+        public void ajoute_metrique_by_idAudit(string P_nomFaille, int P_criticite, string P_description, string P_idAudit)
         {
             if (P_nomFaille != "" && P_description != "")
             {
@@ -120,15 +121,33 @@ namespace bea_audits.COORDINATION
 
                     sauvegarder();
                 }
-                //else
-                //{
-                //    string err = "La criticité ne peux pas être Null";
-                //}
             }
-            //else
-            //{
-            //    string err = "Veuillez remplir les tous champs ou Annuler";
-            //}
+        }
+        // ------- Supprimer un objet de la collection -----------
+        public void supprime_entreprise(string P_idEntreprise)
+        {
+            la_base.Supprimer_entreprise(P_idEntreprise);
+        }
+        public void supprime_audit(string P_idAudit)
+        {
+            la_base.Supprimer_audit(P_idAudit);
+        }
+        public void supprime_metrique(string P_idMetrique)
+        {
+            la_base.Supprimer_metrique(P_idMetrique);
+        }
+        // ---------- Modifier un objet de la collections -----------
+        public void modifier_entreprise(string P_idEntreprise, string P_nomEntreprise, string P_adresseEntreprise)
+        {
+            la_base.Modifier_entreprise(P_idEntreprise, P_nomEntreprise, P_adresseEntreprise);
+        }
+        public void modifier_audit(string P_idAudit, string P_nomAudit)
+        {
+            la_base.Modifier_audit(P_idAudit, P_nomAudit);
+        }
+        public void modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description)
+        {
+            la_base.Modifier_metrique(P_idMetrique, P_nomFaille, P_criticite, P_description);
         }
     }
 }

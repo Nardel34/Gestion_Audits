@@ -112,7 +112,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PRESENTATION\C_CADRE_ajout_entreprise.xaml">
+    <Page Include="PRESENTATION\C_CADRE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,8 +124,8 @@
   <ItemGroup>
     <Compile Include="COORDINATION\C_COORDINATION.cs" />
     <Compile Include="COORDINATION\C_NOTIFIABLE.cs" />
-    <Compile Include="PRESENTATION\C_CADRE_ajout_entreprise.xaml.cs">
-      <DependentUpon>C_CADRE_ajout_entreprise.xaml</DependentUpon>
+    <Compile Include="PRESENTATION\C_CADRE.xaml.cs">
+      <DependentUpon>C_CADRE.xaml</DependentUpon>
     </Compile>
     <Compile Include="PRESENTATION\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -63,7 +63,8 @@ namespace LIB_BASE
         }
 
 
-        // ------------------------------------ Fonctions d'ajouts aux collections --------------------------------------
+        // ------------------------------------ Fonctions de CRUD aux collections --------------------------------------
+        //------- Ajouter -------
         public void Ajouter_entreprise(C_ENTREPRISE P_entreprise)
         {
             les_entreprises.Add(P_entreprise);
@@ -75,6 +76,106 @@ namespace LIB_BASE
         public void Ajouter_metrique(C_METRIQUE P_metrique)
         {
             les_metriques.Add(P_metrique);
+        }
+
+        //------- Supprimer -------
+        public void Supprimer_entreprise(string P_idEntreprise)
+        {
+            foreach (var item in les_entreprises)
+            {
+                if (item.id_entreprise == P_idEntreprise)
+                {
+                    les_entreprises.RemoveAt(Convert.ToInt32(item));
+                    break;
+                }
+            }
+        }
+        public void Supprimer_audit(string P_idAudit)
+        {
+            foreach (var item in les_audits)
+            {
+                if (item.id_audit == P_idAudit)
+                {
+                    les_entreprises.RemoveAt(Convert.ToInt32(item));
+                    break;
+                }
+            }
+        }
+        public void Supprimer_metrique(string P_idMetrique)
+        {
+            foreach (var item in les_metriques)
+            {
+                if (item.id_metrique == P_idMetrique)
+                {
+                    les_entreprises.RemoveAt(Convert.ToInt32(item));
+                    break;
+                }
+            }
+        }
+
+        //------- Modifier ------
+        public void Modifier_entreprise(string P_idEntreprise, string P_nomEntreprise, string P_adresseEntreprise)
+        {
+            foreach (var item in les_entreprises)
+            {
+                if (item.id_entreprise == P_idEntreprise)
+                {
+                    les_entreprises.RemoveAt(Convert.ToInt32(item));
+                    les_entreprises.Add(new C_ENTREPRISE() {id_entreprise = auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise});
+
+                    break;
+                }
+            }
+        }
+        public void Modifier_audit(string P_idAudit, string P_nomAudit)
+        {
+            foreach (var item in les_audits)
+            {
+                if (item.id_audit == P_idAudit)
+                {
+                    les_audits.RemoveAt(Convert.ToInt32(item));
+                    les_audits.Add(new C_AUDIT() { id_audit = auto_increment_audit(), nom_audit = P_nomAudit, id_entreprise = item.id_entreprise});
+
+                    break;
+                }
+            }
+        }
+        public void Modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description)
+        {
+            foreach (var item in les_metriques)
+            {
+                if (item.id_metrique == P_idMetrique)
+                {
+                    les_metriques.RemoveAt(Convert.ToInt32(item));
+                    les_metriques.Add(new C_METRIQUE() { id_metrique = auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, id_audit = item.id_audit });
+
+                    break;
+                }
+            }
+        }
+
+
+        // ------------------------------------ Auto incrémation d'id --------------------------------------
+        public string auto_increment_entreprise()
+        {
+            string req = les_entreprises.Last().id_entreprise;
+            int last_id = 1 + Convert.ToInt32(req);
+
+            return last_id.ToString();
+        }
+        public string auto_increment_audit()
+        {
+            string req = les_audits.Last().id_audit;
+            int last_id = 1 + Convert.ToInt32(req);
+
+            return last_id.ToString();
+        }
+        public string auto_increment_metrique()
+        {
+            string req = les_metriques.Last().id_metrique;
+            int last_id = 1 + Convert.ToInt32(req);
+
+            return last_id.ToString();
         }
 
 
@@ -157,7 +258,7 @@ namespace LIB_BASE
 
 
         // ------------------------------------ Retourne la collection par trié par Id --------------------------------------
-        public List<C_AUDIT> get_audit_by_idEntreprise(int P_idEntreprise)
+        public List<C_AUDIT> get_audit_by_idEntreprise(string P_idEntreprise)
         {
             var req = from un_audit
                       in les_audits
@@ -166,7 +267,7 @@ namespace LIB_BASE
 
             return new List<C_AUDIT>(req);
         }
-        public List<C_METRIQUE> get_metrique_by_idAudit(int P_idAudit)
+        public List<C_METRIQUE> get_metrique_by_idAudit(string P_idAudit)
         {
             var req = from une_metrique
                       in les_metriques
