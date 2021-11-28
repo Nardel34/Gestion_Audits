@@ -8,7 +8,7 @@ using System.IO;
 
 namespace LIB_BASE
 {
-    public class EncryptionHelper
+    public class C_CRYPT
     {
         public string Encrypt(string clearText)
         {

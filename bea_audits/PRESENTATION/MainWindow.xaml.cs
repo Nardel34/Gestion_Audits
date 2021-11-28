@@ -21,7 +21,9 @@ namespace bea_audits.PRESENTATION
     public partial class MainWindow : Window
     {
         C_COORDINATION la_coordination;
-
+        string idEntreprise_selectionnee;
+        string idAudit_selectionnee;
+        string idMetrique_selectionnee;
         public MainWindow()
         {
             la_coordination = new C_COORDINATION();
@@ -43,6 +45,7 @@ namespace bea_audits.PRESENTATION
         {
             string id_entreprise = (e.AddedItems[0] as C_ENTREPRISE).id_entreprise;
             ListBox_audits.Items.Clear();
+            idEntreprise_selectionnee = id_entreprise;
             la_coordination.get_audit_by_idEntreprise(id_entreprise);
 
             foreach (var item in la_coordination.liste_audits)
@@ -53,6 +56,7 @@ namespace bea_audits.PRESENTATION
         private void audit_selectionnee(object sender, SelectionChangedEventArgs e)
         {
             string id_audit = (e.AddedItems[0] as C_AUDIT).id_audit;
+            idAudit_selectionnee = id_audit;
             ListBox_metriques.Items.Clear();
             la_coordination.get_metrique_by_idAudit(id_audit);
 
@@ -61,23 +65,42 @@ namespace bea_audits.PRESENTATION
                 ListBox_metriques.Items.Add(item);
             }
         }
-
+        private void metrique_selectionnee(object sender, SelectionChangedEventArgs e)
+        {
+            string id_metrique = (e.AddedItems[0] as C_METRIQUE).id_metrique;
+            idMetrique_selectionnee = id_metrique;
+        }
         private void BTN_ajouter_entreprise_Click(object sender, RoutedEventArgs e)
         {
-
             C_CADRE le_cadre = new C_CADRE("entreprise");
             le_cadre.Show();
         }
-
         private void BTN_ajouter_audit_Click(object sender, RoutedEventArgs e)
         {
-            C_CADRE le_cadre = new C_CADRE("audit");
+            C_CADRE le_cadre = new C_CADRE("audit", idEntreprise_selectionnee);
+            le_cadre.Show();
+        }
+        private void BTN_ajouter_metrique_Click(object sender, RoutedEventArgs e)
+        {
+            C_CADRE le_cadre = new C_CADRE("metrique", null, idAudit_selectionnee);
             le_cadre.Show();
         }
 
-        private void BTN_ajouter_metrique_Click(object sender, RoutedEventArgs e)
+        private void BTN_modifier_entreprise_Click(object sender, RoutedEventArgs e)
         {
-            C_CADRE le_cadre = new C_CADRE("metrique");
+            C_CADRE_modifier le_cadre = new C_CADRE_modifier("entreprise", idEntreprise_selectionnee);
+            le_cadre.Show();
+        }
+
+        private void BTN_modifier_audit_Click(object sender, RoutedEventArgs e)
+        {
+            C_CADRE_modifier le_cadre = new C_CADRE_modifier("audit", null, idAudit_selectionnee);
+            le_cadre.Show();
+        }
+
+        private void BTN_modifier_metrique_Click(object sender, RoutedEventArgs e)
+        {
+            C_CADRE_modifier le_cadre = new C_CADRE_modifier("metrique", null, null, idMetrique_selectionnee);
             le_cadre.Show();
         }
     }

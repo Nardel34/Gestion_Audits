@@ -45,13 +45,17 @@ namespace APP_CONSOLE
             //}
             //la_base.Encryptage();
 
-            //Console.WriteLine();
-            //List<C_ENTREPRISE> test = la_base.get_all_entreprises();
+            Console.WriteLine();
+            la_base.Modifier_entreprise("2", "ahahaha", "Residence ahahaha");
+            List<C_ENTREPRISE> test = la_base.get_all_entreprises();
 
-            //foreach (var item in test)
-            //{
-            //    Console.WriteLine(item.id_entreprise);
-            //}
+            foreach (var item in test)
+            {
+                Console.WriteLine($"Id : {item.id_entreprise}");
+                Console.WriteLine($"Nom : {item.nom_entreprise}");
+                Console.WriteLine($"Adresse : {item.adresse_entreprise}");
+                Console.WriteLine();
+            }
 
             //la_base.suppression_json_entreprise();
             //la_base.suppression_json_audit();

@@ -11,9 +11,9 @@ namespace LIB_BASE
     public class C_BASE
     {
         // ----------- collections des Json -----------
-        List<C_ENTREPRISE> les_entreprises = new List<C_ENTREPRISE>();
-        List<C_AUDIT> les_audits = new List<C_AUDIT>();
-        List<C_METRIQUE> les_metriques = new List<C_METRIQUE>();
+        List<C_ENTREPRISE> les_entreprises;
+        List<C_AUDIT> les_audits;
+        List<C_METRIQUE> les_metriques;
 
         // ----------- Nom des ficiers d'écriture et de lecture -----------
         const string file_entreprise = "entreprises.dat";
@@ -21,7 +21,7 @@ namespace LIB_BASE
         const string file_metrique = "metriques.dat";
 
         // ----------- instance de cryptage -----------
-        EncryptionHelper le_cryptage = new EncryptionHelper();
+        C_CRYPT le_cryptage = new C_CRYPT();
 
 
         // ------------------------------------ Constructeur de décryptage et de lecture des fichiers dat --------------------------------------
@@ -33,17 +33,29 @@ namespace LIB_BASE
                 string data_entreprises_decrypt = le_cryptage.Decrypt(data_entreprises);
                 les_entreprises = JsonSerializer.Deserialize<List<C_ENTREPRISE>>(data_entreprises_decrypt);
             }
+            else
+            {
+                les_entreprises = new List<C_ENTREPRISE>();
+            }
             if (File.Exists(file_audit))
             {
                 string data_audits = File.ReadAllText(file_audit);
                 string data_audits_decrypt = le_cryptage.Decrypt(data_audits);
                 les_audits = JsonSerializer.Deserialize<List<C_AUDIT>>(data_audits_decrypt);
             }
+            else
+            {
+                les_audits = new List<C_AUDIT>();
+            }
             if (File.Exists(file_metrique))
             {
                 string data_metriques = File.ReadAllText(file_metrique);
                 string data_metriques_decrypt = le_cryptage.Decrypt(data_metriques);
                 les_metriques = JsonSerializer.Deserialize<List<C_METRIQUE>>(data_metriques_decrypt);
+            }
+            else
+            {
+                les_metriques = new List<C_METRIQUE>();
             }
         }
 
@@ -116,12 +128,12 @@ namespace LIB_BASE
         //------- Modifier ------
         public void Modifier_entreprise(string P_idEntreprise, string P_nomEntreprise, string P_adresseEntreprise)
         {
-            foreach (var item in les_entreprises)
+            for (int i = 0; i < les_entreprises.Count; i++)
             {
-                if (item.id_entreprise == P_idEntreprise)
+                if (les_entreprises[i].id_entreprise == P_idEntreprise)
                 {
-                    les_entreprises.RemoveAt(Convert.ToInt32(item));
-                    les_entreprises.Add(new C_ENTREPRISE() {id_entreprise = auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise});
+                    les_entreprises.RemoveAt(i);
+                    les_entreprises.Add(new C_ENTREPRISE() { id_entreprise = auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise });
 
                     break;
                 }
@@ -129,12 +141,12 @@ namespace LIB_BASE
         }
         public void Modifier_audit(string P_idAudit, string P_nomAudit)
         {
-            foreach (var item in les_audits)
+            for (int i = 0; i < les_audits.Count; i++)
             {
-                if (item.id_audit == P_idAudit)
+                if (les_audits[i].id_audit == P_idAudit)
                 {
-                    les_audits.RemoveAt(Convert.ToInt32(item));
-                    les_audits.Add(new C_AUDIT() { id_audit = auto_increment_audit(), nom_audit = P_nomAudit, id_entreprise = item.id_entreprise});
+                    les_audits.RemoveAt(i);
+                    les_audits.Add(new C_AUDIT() { id_audit = auto_increment_audit(), nom_audit = P_nomAudit, id_entreprise = les_audits[i].id_entreprise });
 
                     break;
                 }
@@ -142,12 +154,12 @@ namespace LIB_BASE
         }
         public void Modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description)
         {
-            foreach (var item in les_metriques)
+            for (int i = 0; i < les_metriques.Count; i++)
             {
-                if (item.id_metrique == P_idMetrique)
+                if (les_metriques[i].id_metrique == P_idMetrique)
                 {
-                    les_metriques.RemoveAt(Convert.ToInt32(item));
-                    les_metriques.Add(new C_METRIQUE() { id_metrique = auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, id_audit = item.id_audit });
+                    les_metriques.RemoveAt(i);
+                    les_metriques.Add(new C_METRIQUE() { id_metrique = auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, id_audit = les_metriques[i].id_audit });
 
                     break;
                 }

@@ -91,8 +91,8 @@ namespace bea_audits.COORDINATION
         {
             if (P_nomEntreprise != "")
             {
-                C_ENTREPRISE une_entreprise = new C_ENTREPRISE() { nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise };
-                liste_entreprises.Add(une_entreprise);
+                C_ENTREPRISE une_entreprise = new C_ENTREPRISE() { id_entreprise = la_base.auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise };
+                //liste_entreprises.Add(une_entreprise);
                 la_base.Ajouter_entreprise(une_entreprise);
 
                 sauvegarder();
@@ -102,8 +102,8 @@ namespace bea_audits.COORDINATION
         {
             if (P_nomAudit != "")
             {
-                C_AUDIT un_audit = new C_AUDIT() { nom_audit = P_nomAudit, date_audit = DateTime.Now, id_entreprise = P_idEntreprise };
-                liste_audits.Add(un_audit);
+                C_AUDIT un_audit = new C_AUDIT() { id_audit = la_base.auto_increment_audit(), nom_audit = P_nomAudit, date_audit = DateTime.Now, id_entreprise = P_idEntreprise };
+                //liste_audits.Add(un_audit);
                 la_base.Ajouter_audit(un_audit);
 
                 sauvegarder();
@@ -115,8 +115,8 @@ namespace bea_audits.COORDINATION
             {
                 if (P_criticite != 0)
                 {
-                    C_METRIQUE une_metrique = new C_METRIQUE() { nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, id_audit = P_idAudit };
-                    liste_metriques.Add(une_metrique);
+                    C_METRIQUE une_metrique = new C_METRIQUE() { id_metrique = la_base.auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, id_audit = P_idAudit };
+                    //liste_metriques.Add(une_metrique);
                     la_base.Ajouter_metrique(une_metrique);
 
                     sauvegarder();
