@@ -11,6 +11,11 @@ namespace LIB_BASE
         public string id_audit { get; set; }
         public string nom_audit { get; set; }
         public DateTime date_audit { get; set; }
+        public string version { get; set; }
         public string id_entreprise { get; set; }
+        public C_AUDIT()
+        {
+            version = "1";
+        }
     }
 }

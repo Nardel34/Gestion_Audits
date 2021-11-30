@@ -20,5 +20,7 @@
         <Button Content="Annuler" HorizontalAlignment="Center" Margin="120,0,0,25" VerticalAlignment="Bottom" Width="92" Height="30" Click="BTN_annule_ajout_Click"/>
         <Label x:Name="label_description" Content="Description :" HorizontalAlignment="Left" Margin="279,76,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="description" HorizontalAlignment="Left" Height="100" Margin="237,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Slider x:Name="slider_ajouter" HorizontalAlignment="Left" Margin="52,181,0,0" VerticalAlignment="Top" Width="150" Maximum="100"/>
+        <TextBlock x:Name="TXT_slider_ajouter" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="202,181,0,0" Width="52"/>
     </Grid>
 </Window>

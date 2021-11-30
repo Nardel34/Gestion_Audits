@@ -15,15 +15,13 @@ using bea_audits.COORDINATION;
 
 namespace bea_audits.PRESENTATION
 {
-    /// <summary>
-    /// Logique d'interaction pour C_CADRE_ajout_entreprise.xaml
-    /// </summary>
     public partial class C_CADRE : Window
     {
         string idEntreprise;
         string idAudit;
         string Type;
         C_COORDINATION la_coordination;
+        MainWindow mainWindow = new MainWindow();
         public C_CADRE(string P_Type, string P_idEntreprise_Selectionnee = null, string P_idAudit_selectionnee = null)
         {
             la_coordination = new C_COORDINATION();
@@ -39,6 +37,8 @@ namespace bea_audits.PRESENTATION
                 description.Visibility = Visibility.Hidden;
                 label_description.Visibility = Visibility.Hidden;
                 fenetre_ajouter.Width = 272.731;
+                slider_ajouter.Visibility = Visibility.Hidden;
+                TXT_slider_ajouter.Visibility = Visibility.Hidden;
             }
             else if (Type == "audit")
             {
@@ -48,11 +48,14 @@ namespace bea_audits.PRESENTATION
                 label_adresse.Visibility = Visibility.Hidden;
                 adresse.Visibility = Visibility.Hidden;
                 fenetre_ajouter.Width = 272.731;
+                slider_ajouter.Visibility = Visibility.Hidden;
+                TXT_slider_ajouter.Visibility = Visibility.Hidden;
             }
             else if (Type == "metrique")
             {
                 titre_ajout.Content = "AJOUTER UNE METRIQUE";
                 label_adresse.Content = "Critité (%) :";
+                adresse.Visibility = Visibility.Hidden;
             }
         }
 

@@ -1,38 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LIB_BASE;
+using bea_audits.ABSTRACTION;
 
 namespace bea_audits.COORDINATION
 {
     class C_COORDINATION : C_NOTIFIABLE
     {
         C_BASE la_base;
-
+        C_ILLUSTRATOR un_illustrator = C_ILLUSTRATOR.Get_Instance();
 
         // ------------------------------------ Données membres avec ascesseurs et mutateurs --------------------------------------
-        private List<C_ENTREPRISE> _liste_entreprises;
-        public List<C_ENTREPRISE> liste_entreprises
+        private ObservableCollection<C_ENTREPRISE> _liste_entreprises;
+        public ObservableCollection<C_ENTREPRISE> liste_entreprises
         {
             get { return _liste_entreprises; }
             set { _liste_entreprises = value; Signal_changement(); }
         }
 
-        private List<C_AUDIT> _liste_audits;
-        public List<C_AUDIT> liste_audits
+        private ObservableCollection<C_AUDIT> _liste_audits;
+        public ObservableCollection<C_AUDIT> liste_audits
         {
             get { return _liste_audits; }
             set { _liste_audits = value; Signal_changement(); }
         }
 
-        private List<C_METRIQUE> _liste_metriques;
-        public List<C_METRIQUE> liste_metriques
+        private ObservableCollection<C_METRIQUE> _liste_metriques;
+        public ObservableCollection<C_METRIQUE> liste_metriques
         {
             get { return _liste_metriques; }
             set { _liste_metriques = value; Signal_changement(); }
         }
+        private C_ENTREPRISE _entreprise_selectionnee;
+
+        public C_ENTREPRISE entreprise_selectionnee
+        {
+            get { return _entreprise_selectionnee; }
+            set { _entreprise_selectionnee = value; Signal_changement(); }
+        }
+        private C_AUDIT _audit_selectionnee;
+
+        public C_AUDIT audit_selectionnee
+        {
+            get { return _audit_selectionnee; }
+            set { _audit_selectionnee = value; Signal_changement(); }
+        }
+
 
         private C_METRIQUE _metrique_selectionnee;
         public C_METRIQUE metrique_selectionnee
@@ -60,21 +77,20 @@ namespace bea_audits.COORDINATION
                 liste_entreprises = la_base.get_entreprise_byName(P_nomEntreprise);
             }
         }
-        public void trier_les_audits(string P_nomAudit)
-        {
-            if (P_nomAudit != "")
-            {
-                liste_audits = la_base.get_audit_byName(P_nomAudit, liste_audits);
-            }
-        }
         // ------------------------------------ Récupération de collections par Id --------------------------------------
         public void get_audit_by_idEntreprise(string P_idEntreprise)
         {
-            liste_audits = la_base.get_audit_by_idEntreprise(P_idEntreprise);
+            if (P_idEntreprise != null)
+            {
+                liste_audits = la_base.get_audit_by_idEntreprise(P_idEntreprise);
+            }
         }
         public void get_metrique_by_idAudit(string P_idAudit)
         {
-            liste_metriques = la_base.get_metrique_by_idAudit(P_idAudit);
+            if (P_idAudit != null)
+            {
+                liste_metriques = la_base.get_metrique_by_idAudit(P_idAudit);
+            }
         }
 
 
@@ -92,8 +108,8 @@ namespace bea_audits.COORDINATION
             if (P_nomEntreprise != "")
             {
                 C_ENTREPRISE une_entreprise = new C_ENTREPRISE() { id_entreprise = la_base.auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise };
-                //liste_entreprises.Add(une_entreprise);
-                la_base.Ajouter_entreprise(une_entreprise);
+                //la_base.Ajouter_entreprise(une_entreprise);
+                liste_entreprises.Add(une_entreprise);
 
                 sauvegarder();
             }
@@ -148,6 +164,16 @@ namespace bea_audits.COORDINATION
         public void modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description)
         {
             la_base.Modifier_metrique(P_idMetrique, P_nomFaille, P_criticite, P_description);
+        }
+
+
+        //----------------------- Mise en page Illustrator -----------------
+        public void Mise_A_jour_Illustrator()
+        {
+            if (metrique_selectionnee != null)
+            {
+                un_illustrator.Ajoute_Jauge(metrique_selectionnee.nom_liaison, metrique_selectionnee.label_courbe, metrique_selectionnee.criticite);
+            }
         }
     }
 }

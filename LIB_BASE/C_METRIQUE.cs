@@ -12,7 +12,8 @@ namespace LIB_BASE
         public string nom_faille { get; set; }
         public int criticite { get; set; }
         public string description { get; set; }
+        public string nom_liaison { get; set; }
+        public string label_courbe { get; set; }
         public string id_audit { get; set; }
-
     }
 }
