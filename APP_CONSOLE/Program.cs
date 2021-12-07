@@ -15,35 +15,67 @@ namespace APP_CONSOLE
         {
             C_BASE la_base = new C_BASE();
 
-            Console.WriteLine(la_base.auto_increment_entreprise());
-
-            for (int i = 0; i < 15; i++)
+            //for (int i = 1; i < 15; i++)
+            //{
+            //    C_ENTREPRISE une_entreprise = new C_ENTREPRISE()
+            //    {
+            //        id_entreprise = $"{i}",
+            //        nom_entreprise = $"Entreprise_{i}",
+            //        adresse_entreprise = $"Adresse_{i}",
+            //    };
+            //    la_base.Ajouter_entreprise(une_entreprise);
+                
+            //}
+            for (int i2 = 1; i2 < 15; i2++)
             {
-
-                C_METRIQUE une_metrique = new C_METRIQUE()
+                C_AUDIT un_audit = new C_AUDIT()
                 {
-                    id_metrique = $"{i}",
-                    nom_faille = $"Méga faille_{i}",
-                    criticite = 40,
-                    description = $"Elle a tout cassé_{i}",
-                    nom_liaison = $"j{i}",
-                    label_courbe = "aha",
-                    id_audit = $"{i}"
+                    id_audit = $"{i2}",
+                    nom_audit = $"Audit_{i2}",
+                    date_audit = DateTime.Now,
+                    id_entreprise = $"1"
                 };
+                //la_base.Ajouter_audit(un_audit);
 
-                la_base.Ajouter_metrique(une_metrique);
+                for (int i3 = 1; i3 < 15; i3++)
+                {
+                    C_METRIQUE une_metrique = new C_METRIQUE()
+                    {
+                        id_metrique = $"{i3}",
+                        nom_faille = $"Faille_{i3}",
+                        criticite = 40,
+                        description = $"Lorem ipsum dolor sit amet. Aut aliquam voluptatem sed odio similique hic tempore dolor ea eligendi voluptatibus. Ut vero voluptas a quaerat exercitationem eos necessitatibus iure sed eius numquam.",
+                        nom_liaison = $"j{i3}",
+                        label_courbe = $"Label{i3}",
+                        id_audit = $"{i2}"
+                    };
+                    la_base.Ajouter_metrique(une_metrique);
+                }
             }
             la_base.Encryptage();
+            //la_base.Supprimer_entreprise("1");
 
-            //Console.WriteLine();
-            //la_base.Modifier_entreprise("9", "Test", "Residence Test");
-            //ObservableCollection<C_ENTREPRISE> test = la_base.get_all_entreprises();
-
-
+            //foreach (var item in la_base.les_entreprises)
+            //{
+            //    Console.WriteLine(item.nom_entreprise);
+            //}
+            //foreach (var item in la_base.les_audits)
+            //{
+            //    Console.WriteLine($"{item.nom_audit}, {item.id_entreprise}");
+            //}
+            foreach (var item in la_base.les_metriques)
+            {
+                Console.WriteLine(item.id_audit);
+            }
 
             //la_base.suppression_json_entreprise();
             //la_base.suppression_json_audit();
             //la_base.suppression_json_metrique();
+            //la_base.Supprimer_metrique("3");
+            //foreach (var item in la_base.les_metriques)
+            //{
+            //    Console.WriteLine($"{item.id_metrique} : {item.nom_faille}");
+            //}
         }
     }
 }

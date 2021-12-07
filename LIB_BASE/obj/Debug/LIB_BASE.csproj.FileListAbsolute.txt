@@ -48,3 +48,5 @@ C:\Users\victo\Downloads\Gestion_Audits-main\Gestion_Audits-main\LIB_BASE\bin\De
 C:\Users\victo\Downloads\Gestion_Audits-main\Gestion_Audits-main\LIB_BASE\bin\Debug\System.Text.Json.xml
 C:\Users\victo\Downloads\Gestion_Audits-main\Gestion_Audits-main\LIB_BASE\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\victo\Downloads\Gestion_Audits-main\Gestion_Audits-main\LIB_BASE\bin\Debug\System.ValueTuple.xml
+C:\Users\victo\source\repos\bea_audits\LIB_BASE\obj\Debug\Interop.Illustrator.dll
+C:\Users\victo\source\repos\bea_audits\LIB_BASE\obj\Debug\LIB_BASE.csproj.ResolveComReference.cache

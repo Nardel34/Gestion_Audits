@@ -37,8 +37,12 @@ namespace bea_audits.PRESENTATION
                 description.Visibility = Visibility.Hidden;
                 label_description.Visibility = Visibility.Hidden;
                 fenetre_ajouter.Width = 272.731;
-                slider_ajouter.Visibility = Visibility.Hidden;
-                TXT_slider_ajouter.Visibility = Visibility.Hidden;
+                slider.Visibility = Visibility.Hidden;
+                TXT_slider.Visibility = Visibility.Hidden;
+                TXB_liaison_ajouter.Visibility = Visibility.Hidden;
+                label_liaison.Visibility = Visibility.Hidden;
+                TBX_label_ajouter.Visibility = Visibility.Hidden;
+                label_label.Visibility = Visibility.Hidden;
             }
             else if (Type == "audit")
             {
@@ -48,8 +52,12 @@ namespace bea_audits.PRESENTATION
                 label_adresse.Visibility = Visibility.Hidden;
                 adresse.Visibility = Visibility.Hidden;
                 fenetre_ajouter.Width = 272.731;
-                slider_ajouter.Visibility = Visibility.Hidden;
-                TXT_slider_ajouter.Visibility = Visibility.Hidden;
+                slider.Visibility = Visibility.Hidden;
+                TXT_slider.Visibility = Visibility.Hidden;
+                TXB_liaison_ajouter.Visibility = Visibility.Hidden;
+                label_liaison.Visibility = Visibility.Hidden;
+                TBX_label_ajouter.Visibility = Visibility.Hidden;
+                label_label.Visibility = Visibility.Hidden;
             }
             else if (Type == "metrique")
             {
@@ -71,7 +79,7 @@ namespace bea_audits.PRESENTATION
             }
             else if (Type == "metrique")
             {
-                la_coordination.ajoute_metrique_by_idAudit(nom.Text, Convert.ToInt32(adresse.Text), description.Text, idAudit);
+                la_coordination.ajoute_metrique_by_idAudit(nom.Text, Convert.ToInt32(TXT_slider.Text), description.Text, TXB_liaison_ajouter.Text, TBX_label_ajouter.Text, idAudit);
             }
             Close();
         }

@@ -6,19 +6,48 @@
         xmlns:local="clr-namespace:bea_audits.PRESENTATION"
         mc:Ignorable="d"
         x:Name="fenetre_modifier"
-        Title="C_CADRE_modifier" Height="328.038" Width="460.747" WindowStartupLocation="CenterScreen">
+        Title="C_CADRE_modifier" Height="328.038" Width="460.747" WindowStartupLocation="CenterScreen" Background="#001B4C">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Label x:Name="titre_ajout" Content="MODIFIER UNE ENTREPRISE" HorizontalAlignment="Center" Margin="0,29,0,0" VerticalAlignment="Top" Width="170" FontWeight="Bold"/>
+        <Label x:Name="titre_ajout" Content="MODIFIER UNE ENTREPRISE" HorizontalAlignment="Center" Margin="142,19,142.4,0" VerticalAlignment="Top" Width="170" FontWeight="Bold"/>
 
-        <Label Content="Nom :" HorizontalAlignment="Left" Margin="110,80,0,0" VerticalAlignment="Top" Width="45"/>
-        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="26" Margin="52,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Label Content="Nom :" HorizontalAlignment="Left" Margin="110,52,0,0" VerticalAlignment="Top" Width="45"/>
+        <TextBox x:Name="nom" HorizontalAlignment="Left" Height="26" Margin="52,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
 
-        <Label x:Name="label_adresse" Content="Adresse :" HorizontalAlignment="Left" Margin="102,150,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="adresse" HorizontalAlignment="Left" Height="26" Margin="52,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Label x:Name="label_adresse" Content="Adresse :" HorizontalAlignment="Left" Margin="102,114,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="adresse" HorizontalAlignment="Left" Height="26" Margin="52,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
 
         <Button Content="Modifier" HorizontalAlignment="Center" Margin="0,0,120,25" VerticalAlignment="Bottom" Width="92" Height="30" Click="BTN_modif_Click"/>
         <Button Content="Annuler" HorizontalAlignment="Center" Margin="120,0,0,25" VerticalAlignment="Bottom" Width="92" Height="30" Click="BTN_annul_modif_Clic"/>
-        <Label x:Name="label_description" Content="Description :" HorizontalAlignment="Left" Margin="279,76,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="description" HorizontalAlignment="Left" Height="100" Margin="237,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Label x:Name="label_description" Content="Description :" HorizontalAlignment="Left" Margin="281,52,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="description" HorizontalAlignment="Left" Height="88" Margin="241,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="40,143,0,0" VerticalAlignment="Top" Width="150" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        <TextBox x:Name="TXT_slider" Text="{Binding ElementName=slider, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="190,143,0,0" Width="30"/>
+        <TextBox x:Name="TXB_liaison_modifier" HorizontalAlignment="Left" Height="23" Margin="52,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
+        <Label x:Name="label_liaison" Content="Nom de la liaison :" HorizontalAlignment="Left" Margin="78,177,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBX_label_modifier" HorizontalAlignment="Left" Height="23" Margin="239,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161"/>
+        <Label x:Name="label_label" Content="Nom du label :" HorizontalAlignment="Left" Margin="278,177,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

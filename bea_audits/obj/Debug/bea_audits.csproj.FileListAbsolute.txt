@@ -84,6 +84,6 @@ C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\PRESENTATION\C_CADRE
 C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\PRESENTATION\C_CADRE.baml
 C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\PRESENTATION\C_CADRE_modifier.g.cs
 C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\PRESENTATION\C_CADRE_modifier.baml
-C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\bea_audits.csproj.CopyComplete
 C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\Interop.Illustrator.dll
 C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\bea_audits.csproj.ResolveComReference.cache
+C:\Users\victo\source\repos\bea_audits\bea_audits\obj\Debug\bea_audits.csproj.CopyComplete

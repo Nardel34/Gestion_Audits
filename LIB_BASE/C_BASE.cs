@@ -7,14 +7,16 @@ using System.Text.Json;
 using System.IO;
 using System.Collections.ObjectModel;
 
+using Illustrator;
+
 namespace LIB_BASE
 {
     public class C_BASE
     {
         // ----------- collections des Json -----------
-        ObservableCollection<C_ENTREPRISE> les_entreprises;
-        ObservableCollection<C_AUDIT> les_audits;
-        ObservableCollection<C_METRIQUE> les_metriques;
+        public ObservableCollection<C_ENTREPRISE> les_entreprises;
+        public ObservableCollection<C_AUDIT> les_audits;
+        public ObservableCollection<C_METRIQUE> les_metriques;
 
         // ----------- Nom des ficiers d'écriture et de lecture -----------
         const string file_entreprise = "entreprises.dat";
@@ -94,33 +96,62 @@ namespace LIB_BASE
         //------- Supprimer -------
         public void Supprimer_entreprise(string P_idEntreprise)
         {
-            foreach (var item in les_entreprises)
+            for (int i = 0; i < les_entreprises.Count; i++)
+            {
+                if (les_entreprises[i].id_entreprise == P_idEntreprise)
+                {
+                    les_entreprises.RemoveAt(i);
+
+                    break;
+                }
+            }
+            List<string> id_audits_supprimes = new List<string>();
+            foreach (var item in les_audits.ToList())
             {
                 if (item.id_entreprise == P_idEntreprise)
                 {
-                    les_entreprises.RemoveAt(Convert.ToInt32(item));
-                    break;
+                    les_audits.Remove(item);
+                    id_audits_supprimes.Add(item.id_audit);
+                }
+            }
+            foreach (var item in les_metriques.ToList())
+            {
+                foreach (var item2 in id_audits_supprimes)
+                {
+                    if (item2 == item.id_audit)
+                    {
+                        les_metriques.Remove(item);
+                    }
                 }
             }
         }
         public void Supprimer_audit(string P_idAudit)
         {
-            foreach (var item in les_audits)
+            for (int i = 0; i < les_audits.Count; i++)
+            {
+                if (les_audits[i].id_audit == P_idAudit)
+                {
+                    les_audits.RemoveAt(i);
+
+                    break;
+                }
+            }
+            foreach (var item in les_metriques.ToList())
             {
                 if (item.id_audit == P_idAudit)
                 {
-                    les_entreprises.RemoveAt(Convert.ToInt32(item));
-                    break;
+                    les_metriques.Remove(item);
                 }
             }
         }
         public void Supprimer_metrique(string P_idMetrique)
         {
-            foreach (var item in les_metriques)
+            for (int i = 0; i < les_metriques.Count; i++)
             {
-                if (item.id_metrique == P_idMetrique)
+                if (les_metriques[i].id_metrique == P_idMetrique)
                 {
-                    les_entreprises.RemoveAt(Convert.ToInt32(item));
+                    les_metriques.RemoveAt(i);
+
                     break;
                 }
             }
@@ -146,13 +177,13 @@ namespace LIB_BASE
             {
                 if (les_audits[i].id_audit == P_idAudit)
                 {
-                    les_audits[i].nom_audit = P_idAudit;
+                    les_audits[i].nom_audit = P_nomAudit;
 
                     break;
                 }
             }
         }
-        public void Modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description)
+        public void Modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description, string P_nomLiaison, string P_nomLabel)
         {
             for (int i = 0; i < les_metriques.Count; i++)
             {
@@ -160,8 +191,9 @@ namespace LIB_BASE
                 {
                     les_metriques[i].nom_faille = P_nomFaille;
                     les_metriques[i].criticite = P_criticite;
-                    les_metriques[i].criticite = P_criticite;
                     les_metriques[i].description = P_description;
+                    les_metriques[i].nom_liaison = P_nomLiaison;
+                    les_metriques[i].label_courbe = P_nomLabel;
 
                     break;
                 }
@@ -260,15 +292,6 @@ namespace LIB_BASE
 
             return new ObservableCollection<C_ENTREPRISE>(req);
         }
-        public ObservableCollection<C_AUDIT> get_audit_byName(string P_nomAudit, ObservableCollection<C_AUDIT> P_les_audits)
-        {
-            var req = from un_audit
-                      in P_les_audits
-                      where un_audit.nom_audit.Contains(P_nomAudit)
-                      select un_audit;
-
-            return new ObservableCollection<C_AUDIT>(req);
-        }
 
 
         // ------------------------------------ Retourne la collection par trié par Id --------------------------------------
@@ -289,6 +312,19 @@ namespace LIB_BASE
                       select une_metrique;
 
             return new ObservableCollection<C_METRIQUE>(req);
+        }
+
+        public void Ajoute_block_text(string P_nomZone, string P_textZone)
+        {
+            Document mon_document;
+            Application mon_application = new Application();
+
+            if (mon_application.Documents.Count == 0) mon_document = mon_application.Documents.Add();
+            else mon_document = mon_application.ActiveDocument;
+
+            TextFrame Mon_Objet = mon_document.TextFrames[P_nomZone];
+
+            Mon_Objet.Contents = P_textZone;
         }
     }
 }

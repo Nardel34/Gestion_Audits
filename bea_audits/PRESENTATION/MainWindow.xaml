@@ -5,12 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bea_audits"
         mc:Ignorable="d"
-        Title="Gestion des audits" Height="475.793" Width="1213.616" WindowStartupLocation="CenterScreen">
+        Title="Gestionaire d'audits" Height="475.793" Width="1229.216" WindowStartupLocation="CenterScreen" Background="#001B4C">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#002A77"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005BFF"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Label Content="LISTE DES ENTREPRISES" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="160,43,0,0" Width="136"/>
+        <Label Content="LISTE DES ENTREPRISES" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="134,42,0,0" Width="194" FontSize="16" FontWeight="Bold"/>
         <Label Content="Filtrer par entreprise :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,74,0,0" Width="122"/>
         <TextBox x:Name="TXB_trie_entreprise" HorizontalAlignment="Left" Height="23" Margin="136,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" TextChanged="TXB_trie_entreprise_TextChanged" />
-        <ListBox x:Name="listBox_entreprises" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="184" Margin="136,106,0,0" ItemsSource="{Binding liste_entreprises}" SelectionChanged="entreprise_selectionnee">
+        <ListBox x:Name="listBox_entreprises" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="184" Margin="136,106,0,0" ItemsSource="{Binding liste_entreprises}" SelectionChanged="entreprise_selectionnee" SelectedItem="{Binding entreprise_selectionnee}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -20,11 +44,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="46,136,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_ajouter_entreprise_Click"/>
-        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="46,192,0,0" VerticalAlignment="Top" Width="82" Height="21"/>
+        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="46,192,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="supprimer_entreprise_Click"/>
         <Button Content="Modifier" HorizontalAlignment="Left" Margin="46,164,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_modifier_entreprise_Click"/>
 
-        <Label Content="LISTE DES AUDITS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="501,77,0,0" Width="109"/>
-        <ListBox x:Name="ListBox_audits" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="234" Margin="435,106,0,0" ItemsSource="{Binding liste_audits}" SelectionChanged="audit_selectionnee" >
+        <Label Content="LISTE DES AUDITS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="481,74,0,0" Width="147" FontSize="16" FontWeight="Bold"/>
+        <ListBox x:Name="ListBox_audits" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="234" Margin="435,106,0,0" ItemsSource="{Binding liste_audits}" SelectionChanged="audit_selectionnee" SelectedItem="{Binding audit_selectionnee}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -35,11 +59,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="348,136,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_ajouter_audit_Click"/>
-        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="348,192,0,0" VerticalAlignment="Top" Width="82" Height="21"/>
+        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="348,192,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="supprimer_audit_Click"/>
         <Button Content="Modifier" HorizontalAlignment="Left" Margin="348,164,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_modifier_audit_Click"/>
 
-        <Label Content="LISTE DES METRIQUES" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="807,77,0,0" Width="130"/>
-        <ListBox x:Name="ListBox_metriques" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="182" Margin="782,106,0,0" SelectedItem="{Binding metrique_selectionnee}" SelectionChanged="metrique_selectionnee" ItemsSource="{Binding liste_metriques}">
+        <Label Content="LISTE DES METRIQUES" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="783,74,0,0" Width="180" FontSize="16" FontWeight="Bold"/>
+        <ListBox x:Name="ListBox_metriques" HorizontalAlignment="Left" Height="296" VerticalAlignment="Top" Width="182" Margin="782,106,0,0" SelectedItem="{Binding metrique_selectionnee}" ItemsSource="{Binding liste_metriques}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -52,17 +76,13 @@
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding metrique_selectionnee.criticite}" VerticalAlignment="Top" Margin="1111,106,0,0" Height="20" Width="24" TextAlignment="Right"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="1135,106,0,0" Height="20" Width="24">&#37;</TextBlock>
 
-        <Label Content="DESCRIPTION :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1045,131,0,0" Width="91"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding metrique_selectionnee.description}" VerticalAlignment="Top" Margin="1013,162,0,0" Height="190" Width="159"/>
+        <Label Content="DESCRIPTION :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1049,136,0,0" Width="91"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding metrique_selectionnee.description}" VerticalAlignment="Top" Margin="1013,162,0,0" Height="190" Width="159" Background="#002A77"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="695,136,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_ajouter_metrique_Click"/>
-        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="695,192,0,0" VerticalAlignment="Top" Width="82" Height="21"/>
+        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="695,192,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="supprimer_metrique_Click"/>
         <Button Content="Modifier" HorizontalAlignment="Left" Margin="695,164,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="BTN_modifier_metrique_Click"/>
-        
-        <Button x:Name="BTN_update" Content="Button" HorizontalAlignment="Left" Margin="1049,387,0,0" VerticalAlignment="Top" Width="75" Click="BTN_update_Click" />
 
-
-
-
-
+        <Button x:Name="BTN_update" Content="Illustrator (Jauge)" HorizontalAlignment="Left" Margin="1101,376,0,0" VerticalAlignment="Top" Width="104" Click="BTN_update_sphere_Click" Background="#FF9F500C" Height="26" BorderBrush="#FFFFDC00"/>
+        <Button x:Name="BTN_update_Copy" Content="Illustrator (Block)" HorizontalAlignment="Left" Margin="984,376,0,0" VerticalAlignment="Top" Width="103" Click="BTN_update_block_Click" Background="#FF9F500C" Height="26" BorderBrush="#FFFFDC00"/>
     </Grid>
 </Window>

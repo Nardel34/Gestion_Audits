@@ -40,6 +40,12 @@ namespace bea_audits.PRESENTATION
                 description.Visibility = Visibility.Hidden;
                 label_description.Visibility = Visibility.Hidden;
                 fenetre_modifier.Width = 272.731;
+                slider.Visibility = Visibility.Hidden;
+                TXT_slider.Visibility = Visibility.Hidden;
+                TXB_liaison_modifier.Visibility = Visibility.Hidden;
+                label_liaison.Visibility = Visibility.Hidden;
+                TBX_label_modifier.Visibility = Visibility.Hidden;
+                label_label.Visibility = Visibility.Hidden;
             }
             else if (Type == "audit")
             {
@@ -49,11 +55,18 @@ namespace bea_audits.PRESENTATION
                 label_adresse.Visibility = Visibility.Hidden;
                 adresse.Visibility = Visibility.Hidden;
                 fenetre_modifier.Width = 272.731;
+                slider.Visibility = Visibility.Hidden;
+                TXT_slider.Visibility = Visibility.Hidden;
+                TXB_liaison_modifier.Visibility = Visibility.Hidden;
+                label_liaison.Visibility = Visibility.Hidden;
+                TBX_label_modifier.Visibility = Visibility.Hidden;
+                label_label.Visibility = Visibility.Hidden;
             }
             else if (Type == "metrique")
             {
                 titre_ajout.Content = "MODIFIER UNE METRIQUE";
                 label_adresse.Content = "Critité (%) :";
+                adresse.Visibility = Visibility.Hidden;
             }
         }
 
@@ -74,7 +87,7 @@ namespace bea_audits.PRESENTATION
             }
             else if (Type == "metrique")
             {
-                la_coordination.modifier_metrique(idMetrique, nom.Text, Convert.ToInt32(adresse.Text), description.Text);
+                la_coordination.modifier_metrique(idMetrique, nom.Text, Convert.ToInt32(TXT_slider.Text), description.Text, TXB_liaison_modifier.Text, TBX_label_modifier.Text);
             }
             Close();
         }
