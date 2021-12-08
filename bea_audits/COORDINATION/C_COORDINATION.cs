@@ -109,46 +109,37 @@ namespace bea_audits.COORDINATION
         // --------- Ajouter un objet de la collection -------------
         public void ajoute_entreprise(string P_nomEntreprise, string P_adresseEntreprise)
         {
-            if (entreprise_selectionnee != null)
+            if (P_nomEntreprise != "")
             {
-                if (P_nomEntreprise != "")
-                {
-                    C_ENTREPRISE une_entreprise = new C_ENTREPRISE() { id_entreprise = la_base.auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise };
-                    la_base.Ajouter_entreprise(une_entreprise);
-                    //liste_entreprises.Add(une_entreprise);
+                C_ENTREPRISE une_entreprise = new C_ENTREPRISE() { id_entreprise = la_base.auto_increment_entreprise(), nom_entreprise = P_nomEntreprise, adresse_entreprise = P_adresseEntreprise };
+                la_base.Ajouter_entreprise(une_entreprise);
+                //liste_entreprises.Add(une_entreprise);
 
-                    sauvegarder();
-                }
+                sauvegarder();
             }
         }
         public void ajoute_audit_by_idEntreprise(string P_nomAudit, string P_idEntreprise)
         {
-            if (audit_selectionnee != null)
+            if (P_nomAudit != "")
             {
-                if (P_nomAudit != "")
-                {
-                    C_AUDIT un_audit = new C_AUDIT() { id_audit = la_base.auto_increment_audit(), nom_audit = P_nomAudit, date_audit = DateTime.Now, id_entreprise = P_idEntreprise };
-                    la_base.Ajouter_audit(un_audit);
-                    //liste_audits.Add(un_audit);
+                C_AUDIT un_audit = new C_AUDIT() { id_audit = la_base.auto_increment_audit(), nom_audit = P_nomAudit, date_audit = DateTime.Now, id_entreprise = P_idEntreprise };
+                la_base.Ajouter_audit(un_audit);
+                //liste_audits.Add(un_audit);
 
-                    sauvegarder();
-                }
+                sauvegarder();
             }
         }
         public void ajoute_metrique_by_idAudit(string P_nomFaille, int P_criticite, string P_description, string P_nomLiaison, string P_labelCourbe, string P_idAudit)
         {
-            if (metrique_selectionnee != null)
+            if (P_nomFaille != "" && P_description != "")
             {
-                if (P_nomFaille != "" && P_description != "")
+                if (P_criticite != 0)
                 {
-                    if (P_criticite != 0)
-                    {
-                        C_METRIQUE une_metrique = new C_METRIQUE() { id_metrique = la_base.auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, nom_liaison = P_nomLiaison, label_courbe = P_labelCourbe, id_audit = P_idAudit };
-                        la_base.Ajouter_metrique(une_metrique);
-                        //liste_metriques.Add(une_metrique);
+                    C_METRIQUE une_metrique = new C_METRIQUE() { id_metrique = la_base.auto_increment_metrique(), nom_faille = P_nomFaille, criticite = P_criticite, description = P_description, nom_liaison = P_nomLiaison, label_courbe = P_labelCourbe, id_audit = P_idAudit };
+                    la_base.Ajouter_metrique(une_metrique);
+                    //liste_metriques.Add(une_metrique);
 
-                        sauvegarder();
-                    }
+                    sauvegarder();
                 }
             }
         }
@@ -182,27 +173,18 @@ namespace bea_audits.COORDINATION
         // ---------- Modifier un objet de la collections -----------
         public void modifier_entreprise(string P_idEntreprise, string P_nomEntreprise, string P_adresseEntreprise)
         {
-            if (entreprise_selectionnee != null)
-            {
-                la_base.Modifier_entreprise(P_idEntreprise, P_nomEntreprise, P_adresseEntreprise);
-                sauvegarder();
-            }
+            la_base.Modifier_entreprise(P_idEntreprise, P_nomEntreprise, P_adresseEntreprise);
+            sauvegarder();
         }
         public void modifier_audit(string P_idAudit, string P_nomAudit)
         {
-            if (audit_selectionnee != null)
-            {
-                la_base.Modifier_audit(P_idAudit, P_nomAudit);
-                sauvegarder();
-            }
+            la_base.Modifier_audit(P_idAudit, P_nomAudit);
+            sauvegarder();
         }
         public void modifier_metrique(string P_idMetrique, string P_nomFaille, int P_criticite, string P_description, string P_nomLiaison, string P_nomLabel)
         {
-            if (metrique_selectionnee != null)
-            {
-                la_base.Modifier_metrique(P_idMetrique, P_nomFaille, P_criticite, P_description, P_nomLiaison, P_nomLabel);
-                sauvegarder();
-            }
+            la_base.Modifier_metrique(P_idMetrique, P_nomFaille, P_criticite, P_description, P_nomLiaison, P_nomLabel);
+            sauvegarder();
         }
 
 

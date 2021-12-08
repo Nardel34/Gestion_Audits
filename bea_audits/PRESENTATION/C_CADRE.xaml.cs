@@ -82,11 +82,13 @@ namespace bea_audits.PRESENTATION
                 la_coordination.ajoute_metrique_by_idAudit(nom.Text, Convert.ToInt32(TXT_slider.Text), description.Text, TXB_liaison_ajouter.Text, TBX_label_ajouter.Text, idAudit);
             }
             Close();
+            MainWindow mainwindow = new MainWindow();
         }
 
         private void BTN_annule_ajout_Click(object sender, RoutedEventArgs e)
         {
             Close();
+
         }
     }
 }
